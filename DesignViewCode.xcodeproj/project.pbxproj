@@ -11,6 +11,7 @@
 		DC0F049E2AFF2C670086EF43 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F049D2AFF2C670086EF43 /* Font.swift */; };
 		DC0F04A02AFF2C6C0086EF43 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F049F2AFF2C6C0086EF43 /* CustomUIView.swift */; };
 		DC0F04A22AFF2C700086EF43 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */; };
+		DC0F04A52AFF2D810086EF43 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F04A42AFF2D810086EF43 /* Color.swift */; };
 		DCC63C032AFF08D1005559C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C022AFF08D1005559C9 /* AppDelegate.swift */; };
 		DCC63C052AFF08D1005559C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C042AFF08D1005559C9 /* SceneDelegate.swift */; };
 		DCC63C072AFF08D1005559C9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C062AFF08D1005559C9 /* HomeViewController.swift */; };
@@ -47,6 +48,7 @@
 		DC0F049D2AFF2C670086EF43 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		DC0F049F2AFF2C6C0086EF43 /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
 		DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
+		DC0F04A42AFF2D810086EF43 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DCC63BFF2AFF08D1005559C9 /* DesignViewCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignViewCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC63C022AFF08D1005559C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC63C042AFF08D1005559C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		DC0F04A32AFF2D780086EF43 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DC0F04A42AFF2D810086EF43 /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DCC63BF62AFF08D1005559C9 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +134,7 @@
 		DCC63C012AFF08D1005559C9 /* DesignViewCode */ = {
 			isa = PBXGroup;
 			children = (
+				DC0F04A32AFF2D780086EF43 /* Extensions */,
 				DC0F049A2AFF2C4F0086EF43 /* Helpers */,
 				DCC63C322AFF0F23005559C9 /* ViewControllers */,
 				DCC63C022AFF08D1005559C9 /* AppDelegate.swift */,
@@ -299,6 +310,7 @@
 				DC0F049C2AFF2C5E0086EF43 /* CustomImageView.swift in Sources */,
 				DCC63C032AFF08D1005559C9 /* AppDelegate.swift in Sources */,
 				DC0F04A22AFF2C700086EF43 /* CustomBlurView.swift in Sources */,
+				DC0F04A52AFF2D810086EF43 /* Color.swift in Sources */,
 				DCC63C342AFF0F88005559C9 /* MainTabBarController.swift in Sources */,
 				DCC63C382AFF14AE005559C9 /* NotificationsViewController.swift in Sources */,
 				DC0F049E2AFF2C670086EF43 /* Font.swift in Sources */,

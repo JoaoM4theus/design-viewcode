@@ -24,16 +24,16 @@ class HomeViewController: UIViewController {
         return element
     }()
     
-    private lazy var cardView: UIView = {
-        let element = UIView()
+    private lazy var cardView: CustomView = {
+        let element = CustomView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.backgroundColor = UIColor(named: "BlurBackground")
         return element
     }()
     
-    private lazy var cardVisualEffect: UIVisualEffectView = {
+    private lazy var cardVisualEffect: CustomBlurView = {
         let blurEffect = UIBlurEffect(style: .regular)
-        let element = UIVisualEffectView(effect: blurEffect)
+        let element = CustomBlurView(effect: blurEffect)
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
@@ -82,7 +82,21 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         title = "Featured"
         view.backgroundColor = UIColor(named: "PrimaryBackground")
+        configureAdditional()
         setUpConstraints()
+    }
+
+    private func configureAdditional() {
+        cardView.cornerRadius = 30
+        cardView.shadowOpacity = 0.5
+        cardView.shadowOffset = 10
+        cardView.shadowColor = UIColor(named: "Shadow")!
+        cardView.shadowRadius = 20
+        cardView.borderWidth = 1
+        let color: UIColor = .setHexColor(hex: 0x000000, opacity: 0.2)
+        cardView.borderColor = color
+        
+        cardVisualEffect.cornerRadius = 30
     }
 
     private func setUpConstraints() {
