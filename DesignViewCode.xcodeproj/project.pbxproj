@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC0F049C2AFF2C5E0086EF43 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F049B2AFF2C5E0086EF43 /* CustomImageView.swift */; };
+		DC0F049E2AFF2C670086EF43 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F049D2AFF2C670086EF43 /* Font.swift */; };
+		DC0F04A02AFF2C6C0086EF43 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F049F2AFF2C6C0086EF43 /* CustomUIView.swift */; };
+		DC0F04A22AFF2C700086EF43 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */; };
 		DCC63C032AFF08D1005559C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C022AFF08D1005559C9 /* AppDelegate.swift */; };
 		DCC63C052AFF08D1005559C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C042AFF08D1005559C9 /* SceneDelegate.swift */; };
 		DCC63C072AFF08D1005559C9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C062AFF08D1005559C9 /* HomeViewController.swift */; };
@@ -19,7 +23,6 @@
 		DCC63C362AFF1084005559C9 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C352AFF1084005559C9 /* ExploreViewController.swift */; };
 		DCC63C382AFF14AE005559C9 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C372AFF14AE005559C9 /* NotificationsViewController.swift */; };
 		DCC63C3A2AFF14D7005559C9 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C392AFF14D7005559C9 /* LibraryViewController.swift */; };
-		DCC63C3C2AFF27F9005559C9 /* Helpers in Resources */ = {isa = PBXBuildFile; fileRef = DCC63C3B2AFF27F9005559C9 /* Helpers */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC0F049B2AFF2C5E0086EF43 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		DC0F049D2AFF2C670086EF43 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		DC0F049F2AFF2C6C0086EF43 /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
+		DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
 		DCC63BFF2AFF08D1005559C9 /* DesignViewCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignViewCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC63C022AFF08D1005559C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC63C042AFF08D1005559C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,7 +63,6 @@
 		DCC63C352AFF1084005559C9 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		DCC63C372AFF14AE005559C9 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		DCC63C392AFF14D7005559C9 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
-		DCC63C3B2AFF27F9005559C9 /* Helpers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Helpers; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC0F049A2AFF2C4F0086EF43 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DC0F049D2AFF2C670086EF43 /* Font.swift */,
+				DC0F049F2AFF2C6C0086EF43 /* CustomUIView.swift */,
+				DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */,
+				DC0F049B2AFF2C5E0086EF43 /* CustomImageView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		DCC63BF62AFF08D1005559C9 = {
 			isa = PBXGroup;
 			children = (
@@ -107,7 +124,7 @@
 		DCC63C012AFF08D1005559C9 /* DesignViewCode */ = {
 			isa = PBXGroup;
 			children = (
-				DCC63C3B2AFF27F9005559C9 /* Helpers */,
+				DC0F049A2AFF2C4F0086EF43 /* Helpers */,
 				DCC63C322AFF0F23005559C9 /* ViewControllers */,
 				DCC63C022AFF08D1005559C9 /* AppDelegate.swift */,
 				DCC63C042AFF08D1005559C9 /* SceneDelegate.swift */,
@@ -251,7 +268,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCC63C3C2AFF27F9005559C9 /* Helpers in Resources */,
 				DCC63C0F2AFF08D3005559C9 /* LaunchScreen.storyboard in Resources */,
 				DCC63C0C2AFF08D3005559C9 /* Assets.xcassets in Resources */,
 			);
@@ -279,9 +295,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCC63C072AFF08D1005559C9 /* HomeViewController.swift in Sources */,
+				DC0F04A02AFF2C6C0086EF43 /* CustomUIView.swift in Sources */,
+				DC0F049C2AFF2C5E0086EF43 /* CustomImageView.swift in Sources */,
 				DCC63C032AFF08D1005559C9 /* AppDelegate.swift in Sources */,
+				DC0F04A22AFF2C700086EF43 /* CustomBlurView.swift in Sources */,
 				DCC63C342AFF0F88005559C9 /* MainTabBarController.swift in Sources */,
 				DCC63C382AFF14AE005559C9 /* NotificationsViewController.swift in Sources */,
+				DC0F049E2AFF2C670086EF43 /* Font.swift in Sources */,
 				DCC63C3A2AFF14D7005559C9 /* LibraryViewController.swift in Sources */,
 				DCC63C362AFF1084005559C9 /* ExploreViewController.swift in Sources */,
 				DCC63C052AFF08D1005559C9 /* SceneDelegate.swift in Sources */,
