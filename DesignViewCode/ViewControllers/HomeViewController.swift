@@ -39,8 +39,7 @@ class HomeViewController: UIViewController {
     }()
     
     private lazy var infoVisualEffect: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .regular)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        let blurEffect = UIBlurEffect(style: .systemMaterial)
         let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect)
         let element = UIVisualEffectView(effect: vibrancyEffect)
         element.translatesAutoresizingMaskIntoConstraints = false
