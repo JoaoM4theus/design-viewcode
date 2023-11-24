@@ -28,6 +28,7 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         configureDefaultTabBar()
         tabBar.tintColor = UIColor(named: "TabBarTint")
+        tabBar.isTranslucent = true
     }
 
     private func configureDefaultTabBar(
