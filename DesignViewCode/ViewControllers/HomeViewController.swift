@@ -97,7 +97,7 @@ class HomeViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 160, height: 257)
+        layout.itemSize = CGSize(width: 160, height: 267)
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: layout)
         collectionView.delegate = self
@@ -106,6 +106,7 @@ class HomeViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.register(HandbooksCollectionViewCell.self,
                                 forCellWithReuseIdentifier: HandbooksCollectionViewCell.identifier)
+        collectionView.layer.masksToBounds = false
         return collectionView
     }()
     
@@ -204,7 +205,7 @@ class HomeViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: handbookTitleLabel.bottomAnchor, constant: 30),
             collectionView.leadingAnchor.constraint(equalTo: viewAux.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: viewAux.trailingAnchor, constant: -16),
-            collectionView.heightAnchor.constraint(equalToConstant: 257),
+            collectionView.heightAnchor.constraint(equalToConstant: 267),
             collectionView.bottomAnchor.constraint(equalTo: viewAux.bottomAnchor, constant: -40)
         ])
     }
@@ -214,7 +215,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        2
+        handbooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -222,6 +223,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegate
                                                             for: indexPath) as? HandbooksCollectionViewCell else {
             return UICollectionViewCell()
         }
+        cell.configure(course: handbooks[indexPath.row])
         return cell
     }
 
@@ -265,7 +267,6 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
     private lazy var viewOpacity: CustomView = {
         let element = CustomView()
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.backgroundColor = .black
         element.layer.opacity = 5/100
         element.cornerRadius = 30
         return element
@@ -318,6 +319,7 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
         let element = UIProgressView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.tintColor = .white
+        element.progress = 35/100
         return element
     }()
 
@@ -330,6 +332,10 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+    }
     override func layoutSubviews() {
         super.layoutSubviews()
         super.layoutIfNeeded()
@@ -344,20 +350,33 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
         
         gradient.startPoint = CGPoint(x: 0, y: 0)
         gradient.endPoint = CGPoint(x: 1, y: 1)
-        gradient.frame = viewOpacity.frame
         gradient.cornerCurve = .continuous
         gradient.cornerRadius = 30
-        gradient.colors = [UIColor.red.cgColor, UIColor.systemPink.cgColor]
+        gradient.frame = CGRect(x: 0, y: 0, width: 160, height: 267)
+        
+        visualEffect.layer.insertSublayer(gradient, at: 0)
+        visualEffect.layer.cornerRadius = 30
+        visualEffect.layer.cornerCurve = .continuous
     }
 
-    func setUpConstraints() {
+    func configure(course: Course) {
+        title.text = course.courseTitle
+        subtitle.text = course.courserSubtitle
+        handbookDescription.text = course.courseDescription
+        gradient.colors = course.courseGradient
+        imageHandbook.image = course.courseBanner
+        logoHandbook.image = course.couserIcon
+    }
+
+    private func setUpConstraints() {
         contentView.addSubview(mainView)
         mainView.addSubview(viewBackground)
         mainView.addSubview(visualEffect)
+        visualEffect.contentView.addSubview(contentVisualEffect)
         visualEffect.contentView.addSubview(viewOpacity)
         visualEffect.contentView.addSubview(progressView)
-        visualEffect.contentView.addSubview(contentVisualEffect)
         visualEffect.contentView.addSubview(imageHandbook)
+        visualEffect.contentView.addSubview(progressView)
         visualEffect.contentView.addSubview(logoHandbook)
         contentVisualEffect.contentView.addSubview(handbookDescription)
         contentVisualEffect.contentView.addSubview(subtitle)
@@ -374,16 +393,12 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
             viewBackground.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
             viewBackground.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
             viewBackground.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: 257),
-            viewBackground.widthAnchor.constraint(equalToConstant: 160)
         ])
         NSLayoutConstraint.activate([
             visualEffect.topAnchor.constraint(equalTo: mainView.topAnchor),
             visualEffect.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
             visualEffect.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
             visualEffect.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
-            visualEffect.heightAnchor.constraint(equalToConstant: 257),
-            visualEffect.widthAnchor.constraint(equalToConstant: 160)
         ])
         NSLayoutConstraint.activate([
             viewOpacity.topAnchor.constraint(equalTo: visualEffect.topAnchor, constant: 16),

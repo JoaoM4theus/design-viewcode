@@ -12,6 +12,7 @@
 		DC0F04A02AFF2C6C0086EF43 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F049F2AFF2C6C0086EF43 /* CustomUIView.swift */; };
 		DC0F04A22AFF2C700086EF43 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */; };
 		DC0F04A52AFF2D810086EF43 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F04A42AFF2D810086EF43 /* Color.swift */; };
+		DCA7AA602B17559D00AFAF68 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7AA5F2B17559D00AFAF68 /* Course.swift */; };
 		DCC63C032AFF08D1005559C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C022AFF08D1005559C9 /* AppDelegate.swift */; };
 		DCC63C052AFF08D1005559C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C042AFF08D1005559C9 /* SceneDelegate.swift */; };
 		DCC63C072AFF08D1005559C9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C062AFF08D1005559C9 /* HomeViewController.swift */; };
@@ -49,6 +50,7 @@
 		DC0F049F2AFF2C6C0086EF43 /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
 		DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
 		DC0F04A42AFF2D810086EF43 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		DCA7AA5F2B17559D00AFAF68 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		DCC63BFF2AFF08D1005559C9 /* DesignViewCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignViewCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC63C022AFF08D1005559C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC63C042AFF08D1005559C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		DCA7AA612B175DC700AFAF68 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7AA5F2B17559D00AFAF68 /* Course.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		DCC63BF62AFF08D1005559C9 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +144,7 @@
 		DCC63C012AFF08D1005559C9 /* DesignViewCode */ = {
 			isa = PBXGroup;
 			children = (
+				DCA7AA612B175DC700AFAF68 /* Models */,
 				DC0F04A32AFF2D780086EF43 /* Extensions */,
 				DC0F049A2AFF2C4F0086EF43 /* Helpers */,
 				DCC63C322AFF0F23005559C9 /* ViewControllers */,
@@ -305,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCA7AA602B17559D00AFAF68 /* Course.swift in Sources */,
 				DCC63C072AFF08D1005559C9 /* HomeViewController.swift in Sources */,
 				DC0F04A02AFF2C6C0086EF43 /* CustomUIView.swift in Sources */,
 				DC0F049C2AFF2C5E0086EF43 /* CustomImageView.swift in Sources */,
