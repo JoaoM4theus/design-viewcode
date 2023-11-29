@@ -51,4 +51,16 @@ class CustomView: UIView {
             layer.borderColor = borderColor.cgColor
         }
     }
+    
+    func configureDefault() {
+        cornerRadius = 30
+        shadowOpacity = 0.5
+        shadowOffset = 10
+        shadowColor = UIColor(named: "Shadow")!
+        shadowRadius = 20
+        borderWidth = 1
+        let color: UIColor = .setHexColor(hex: 0x000000, opacity: 0.2)
+        borderColor = color
+    }
+    
 }

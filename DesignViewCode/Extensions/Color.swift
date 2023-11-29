@@ -15,4 +15,11 @@ extension UIColor {
 
         return UIColor(red: red, green: green, blue: blue, alpha: CGFloat(opacity))
     }
+    static func setRGBColor(red: CGFloat, green: CGFloat, blue: CGFloat, opacity: Float) -> UIColor {
+        let red = red / 255
+        let green = green / 255
+        let blue = blue / 255
+
+        return UIColor(red: red, green: green, blue: blue, alpha: CGFloat(opacity))
+    }
 }
