@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class HomeViewController: UIViewController {
     
+    private var tableViewHeight = NSLayoutConstraint()
     private lazy var viewAux: UIView = {
         let element = UIView()
         element.translatesAutoresizingMaskIntoConstraints = false
@@ -19,6 +21,7 @@ class HomeViewController: UIViewController {
         let element = UIScrollView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.contentInsetAdjustmentBehavior = .never
+        element.delegate = self
         return element
     }()
 
@@ -94,6 +97,15 @@ class HomeViewController: UIViewController {
         return element
     }()
     
+    private lazy var coursesTitleLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "RECENT COURSES"
+        element.font = .systemFont(ofSize: 13, weight: .regular)
+        element.numberOfLines = 2
+        return element
+    }()
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -110,6 +122,21 @@ class HomeViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var tableView: UITableView = {
+        let element = UITableView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.backgroundColor = .clear
+        element.rowHeight = 400
+        element.delegate = self
+        element.dataSource = self
+        element.layer.masksToBounds = false
+        element.register(HandbooksTableViewCell.self,
+                         forCellReuseIdentifier: HandbooksTableViewCell.identifier)
+        return element
+    }()
+    
+    private var tokens: Set<AnyCancellable> = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Featured"
@@ -118,12 +145,17 @@ class HomeViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        tableViewHeight = tableView.heightAnchor.constraint(equalToConstant: 400)
         setUpConstraints()
     }
 
     private func configureAdditional() {
         cardView.configureDefault()
         cardVisualEffect.cornerRadius = 30
+        tableView.publisher(for: \.contentSize).sink { [weak self] newContentSize in
+            guard let self else { return }
+            self.tableViewHeight.constant = newContentSize.height
+        }.store(in: &tokens)
     }
 
     private func setUpConstraints() {
@@ -139,6 +171,8 @@ class HomeViewController: UIViewController {
         infoVisualEffect.contentView.addSubview(descriptionLabel)
         viewAux.addSubview(handbookTitleLabel)
         viewAux.addSubview(collectionView)
+        viewAux.addSubview(coursesTitleLabel)
+        viewAux.addSubview(tableView)
 
         NSLayoutConstraint.activate([
             viewAux.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -205,8 +239,18 @@ class HomeViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: handbookTitleLabel.bottomAnchor, constant: 30),
             collectionView.leadingAnchor.constraint(equalTo: viewAux.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: viewAux.trailingAnchor, constant: -16),
-            collectionView.heightAnchor.constraint(equalToConstant: 267),
-            collectionView.bottomAnchor.constraint(equalTo: viewAux.bottomAnchor, constant: -40)
+            collectionView.heightAnchor.constraint(equalToConstant: 267)
+        ])
+        NSLayoutConstraint.activate([
+            coursesTitleLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 40),
+            coursesTitleLabel.leadingAnchor.constraint(equalTo: viewAux.leadingAnchor, constant: 16)
+        ])
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: coursesTitleLabel.bottomAnchor, constant: 15),
+            tableView.leadingAnchor.constraint(equalTo: viewAux.leadingAnchor, constant: 16),
+            tableView.trailingAnchor.constraint(equalTo: viewAux.trailingAnchor, constant: -16),
+            tableViewHeight,
+            tableView.bottomAnchor.constraint(equalTo: viewAux.bottomAnchor, constant: -40)
         ])
     }
 
@@ -229,221 +273,210 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegate
 
 }
 
-class HandbooksCollectionViewCell: UICollectionViewCell {
-    static let identifier = "HandbooksCollectionViewCell"
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        courses.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
     
-    private lazy var mainView: CustomView = {
-        let element = CustomView()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.backgroundColor = UIColor(named: "BlurBackground")
-        element.cornerRadius = 30
-        return element
-    }()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: HandbooksTableViewCell.identifier,
+            for: indexPath) as? HandbooksTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(course: courses[indexPath.section])
+        return cell
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 5))
+        return view
+    }
 
-    private lazy var viewBackground: CustomView = {
-        let element = CustomView()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.backgroundColor = .systemIndigo
-        element.cornerRadius = 30
-        return element
-    }()
-
-    private lazy var visualEffect: CustomBlurView = {
-        let blurEffect = UIBlurEffect(style: .systemThinMaterial)
-        let element = CustomBlurView(effect: blurEffect)
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.cornerRadius = 30
-        return element
-    }()
-
-    private lazy var contentVisualEffect: CustomBlurView = {
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-        let element = CustomBlurView(effect: blurEffect)
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.cornerRadius = 30
-        return element
-    }()
-
-    private lazy var viewOpacity: CustomView = {
-        let element = CustomView()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.layer.opacity = 5/100
-        element.cornerRadius = 30
-        return element
-    }()
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
+        return 20
+    }
     
-    private lazy var imageHandbook: UIImageView = {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let selectedCourses = courses[indexPath.section]
+        let viewController = CoursesViewController(course: selectedCourses)
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.modalTransitionStyle = .crossDissolve
+        present(viewController, animated: true)
+    }
+}
+
+class HandbooksTableViewCell: UITableViewCell {
+    static let identifier = "HandbooksTableViewCell"
+    
+    private lazy var imageBackground: UIImageView = {
         let element = UIImageView()
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.image = UIImage(named: "Illustration 2")
+        element.image = UIImage(named: "Background 3")
+        element.contentMode = .scaleToFill
+        element.layer.masksToBounds = true
+        element.layer.cornerRadius = 30
         return element
     }()
     
-    private lazy var logoHandbook: CustomImageView = {
-        let element = CustomImageView()
+    private lazy var secondImageBackground: UIImageView = {
+        let element = UIImageView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.image = UIImage(named: "Illustration 1")
+        return element
+    }()
+
+    private lazy var descriptionLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textColor = .white
+        element.text = "Description"
+        element.numberOfLines = 2
+        element.font = .systemFont(ofSize: 13, weight: .regular)
+        return element
+    }()
+    
+    private lazy var durationLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textColor = .white
+        element.text = "Duration"
+        element.numberOfLines = 2
+        element.font = .systemFont(ofSize: 13, weight: .semibold)
+        return element
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textColor = .white
+        element.text = "Title"
+        element.numberOfLines = 0
+        element.font = .systemFont(ofSize: 28, weight: .bold)
+        return element
+    }()
+    
+    private lazy var logoImageView: UIImageView = {
+        let element = UIImageView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.image = UIImage(named: "Logo SwiftUI")
-        element.cornerRadius = 10
+        
+        return element
+    }()
+    
+    private lazy var logoView: CustomView = {
+        let element = CustomView()
+        element.cornerRadius = 20
+        element.translatesAutoresizingMaskIntoConstraints = false
         element.backgroundColor = .setRGBColor(red: 24, green: 32, blue: 77, opacity: 1)
         return element
     }()
-    
-    private lazy var handbookDescription: UILabel = {
-        let element = UILabel()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.text = "Learn about all the basics of SwiftUI"
-        element.font = .systemFont(ofSize: 12, weight: .regular)
-        element.numberOfLines = 2
-        return element
-    }()
-    
-    private lazy var subtitle: UILabel = {
-        let element = UILabel()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.text = "20 HOURS - 30 SECTIONS"
-        element.font = .systemFont(ofSize: 12, weight: .regular)
-        element.numberOfLines = 0
-        return element
-    }()
-    
-    private lazy var title: UILabel = {
-        let element = UILabel()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.text = "SwiftUI Handbook"
-        element.font = .systemFont(ofSize: 17, weight: .semibold)
-        element.numberOfLines = 0
-        return element
-    }()
-    
-    private lazy var progressView: UIProgressView = {
-        let element = UIProgressView()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.tintColor = .white
-        element.progress = 35/100
-        return element
-    }()
 
-    let gradient = CAGradientLayer()
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         
     }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         super.layoutIfNeeded()
-        setUpConstraints()
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
         layer.shadowColor = UIColor(named: "Shadow")!.cgColor
-        layer.shadowOpacity = 0.25
+        layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowRadius = 30
-        layer.masksToBounds = false
+        layer.shadowRadius = 5
         layer.cornerRadius = 30
-        layer.cornerCurve = .continuous
-        
-        gradient.startPoint = CGPoint(x: 0, y: 0)
-        gradient.endPoint = CGPoint(x: 1, y: 1)
-        gradient.cornerCurve = .continuous
-        gradient.cornerRadius = 30
-        gradient.frame = CGRect(x: 0, y: 0, width: 160, height: 267)
-        
-        visualEffect.layer.insertSublayer(gradient, at: 0)
-        visualEffect.layer.cornerRadius = 30
-        visualEffect.layer.cornerCurve = .continuous
+        setUpConstraints()
     }
 
     func configure(course: Course) {
-        title.text = course.courseTitle
-        subtitle.text = course.courserSubtitle
-        handbookDescription.text = course.courseDescription
-        gradient.colors = course.courseGradient
-        imageHandbook.image = course.courseBanner
-        logoHandbook.image = course.couserIcon
+        imageBackground.image = course.courseBackground
+        secondImageBackground.image = course.courseBanner
+        descriptionLabel.text = course.courseDescription
+        durationLabel.text = course.courserSubtitle
+        titleLabel.text = course.courseTitle
+        logoImageView.image = course.couserIcon
     }
 
     private func setUpConstraints() {
-        contentView.addSubview(mainView)
-        mainView.addSubview(viewBackground)
-        mainView.addSubview(visualEffect)
-        visualEffect.contentView.addSubview(contentVisualEffect)
-        visualEffect.contentView.addSubview(viewOpacity)
-        visualEffect.contentView.addSubview(progressView)
-        visualEffect.contentView.addSubview(imageHandbook)
-        visualEffect.contentView.addSubview(progressView)
-        visualEffect.contentView.addSubview(logoHandbook)
-        contentVisualEffect.contentView.addSubview(handbookDescription)
-        contentVisualEffect.contentView.addSubview(subtitle)
-        contentVisualEffect.contentView.addSubview(title)
+        contentView.addSubview(imageBackground)
+        contentView.addSubview(secondImageBackground)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(durationLabel)
+        contentView.addSubview(titleLabel)
+        
+        secondImageBackground.addSubview(logoView)
+        logoView.addSubview(logoImageView)
         
         NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageBackground.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageBackground.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageBackground.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageBackground.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         NSLayoutConstraint.activate([
-            viewBackground.topAnchor.constraint(equalTo: mainView.topAnchor),
-            viewBackground.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
-            viewBackground.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
-            viewBackground.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
+            secondImageBackground.topAnchor.constraint(equalTo: imageBackground.topAnchor, constant: 20),
+            secondImageBackground.leadingAnchor.constraint(equalTo: imageBackground.leadingAnchor, constant: 20),
+            secondImageBackground.trailingAnchor.constraint(equalTo: imageBackground.trailingAnchor, constant: -20),
+            secondImageBackground.heightAnchor.constraint(equalToConstant: 200)
         ])
         NSLayoutConstraint.activate([
-            visualEffect.topAnchor.constraint(equalTo: mainView.topAnchor),
-            visualEffect.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
-            visualEffect.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
-            visualEffect.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
         ])
         NSLayoutConstraint.activate([
-            viewOpacity.topAnchor.constraint(equalTo: visualEffect.topAnchor, constant: 16),
-            viewOpacity.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 16),
-            viewOpacity.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -16),
-            viewOpacity.heightAnchor.constraint(equalToConstant: 90)
+            durationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            durationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            durationLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -8)
         ])
         NSLayoutConstraint.activate([
-            imageHandbook.topAnchor.constraint(equalTo: viewOpacity.topAnchor),
-            imageHandbook.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor),
-            imageHandbook.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor),
-            imageHandbook.bottomAnchor.constraint(equalTo: viewOpacity.bottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            titleLabel.bottomAnchor.constraint(equalTo: durationLabel.topAnchor, constant: -8)
         ])
         NSLayoutConstraint.activate([
-            progressView.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 16),
-            progressView.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -16),
-            progressView.bottomAnchor.constraint(greaterThanOrEqualTo: visualEffect.bottomAnchor, constant: -16),
+            logoView.topAnchor.constraint(equalTo: secondImageBackground.topAnchor),
+            logoView.leadingAnchor.constraint(equalTo: secondImageBackground.leadingAnchor),
+            logoView.heightAnchor.constraint(equalToConstant: 44),
+            logoView.widthAnchor.constraint(equalToConstant: 44)
         ])
         NSLayoutConstraint.activate([
-            contentVisualEffect.topAnchor.constraint(equalTo: mainView.topAnchor),
-            contentVisualEffect.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
-            contentVisualEffect.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
-            contentVisualEffect.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
+            logoImageView.topAnchor.constraint(equalTo: logoView.topAnchor),
+            logoImageView.leadingAnchor.constraint(equalTo: logoView.leadingAnchor),
+            logoImageView.trailingAnchor.constraint(equalTo: logoView.trailingAnchor),
+            logoImageView.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)
         ])
-        NSLayoutConstraint.activate([
-            handbookDescription.leadingAnchor.constraint(equalTo: contentVisualEffect.leadingAnchor, constant: 16),
-            handbookDescription.trailingAnchor.constraint(equalTo: contentVisualEffect.trailingAnchor, constant: -16),
-            handbookDescription.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -8),
-        ])
-        NSLayoutConstraint.activate([
-            subtitle.leadingAnchor.constraint(equalTo: contentVisualEffect.leadingAnchor, constant: 16),
-            subtitle.trailingAnchor.constraint(equalTo: contentVisualEffect.trailingAnchor, constant: -16),
-            subtitle.bottomAnchor.constraint(equalTo: handbookDescription.topAnchor, constant: -8),
-        ])
-        NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: imageHandbook.bottomAnchor, constant: 16),
-            title.leadingAnchor.constraint(equalTo: contentVisualEffect.leadingAnchor, constant: 16),
-            title.trailingAnchor.constraint(equalTo: contentVisualEffect.trailingAnchor, constant: -16),
-            title.bottomAnchor.constraint(equalTo: subtitle.topAnchor, constant: -8),
-        ])
-        NSLayoutConstraint.activate([
-            logoHandbook.widthAnchor.constraint(equalToConstant: 26),
-            logoHandbook.heightAnchor.constraint(equalToConstant: 26),
-            logoHandbook.bottomAnchor.constraint(equalTo: viewOpacity.bottomAnchor),
-            logoHandbook.leadingAnchor.constraint(equalTo: viewOpacity.leadingAnchor)
-        ])
+    }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentHeight = scrollView.contentSize.height
+        let lastScrollYPos = scrollView.contentOffset.y
+        
+        let percentage = lastScrollYPos / contentHeight
+        if percentage <= 0.15 {
+            self.title = "Featured"
+            return
+        }
+        if percentage <= 0.33 {
+            self.title = "Handbooks"
+            return
+        }
+        self.title = "Courses"
+        return
     }
 }

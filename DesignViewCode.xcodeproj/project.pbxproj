@@ -13,6 +13,8 @@
 		DC0F04A22AFF2C700086EF43 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */; };
 		DC0F04A52AFF2D810086EF43 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F04A42AFF2D810086EF43 /* Color.swift */; };
 		DCA7AA602B17559D00AFAF68 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7AA5F2B17559D00AFAF68 /* Course.swift */; };
+		DCBB1DC42B1BD5F800D65265 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB1DC32B1BD5F800D65265 /* CoursesViewController.swift */; };
+		DCBB1DC62B1BD7F300D65265 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB1DC52B1BD7F300D65265 /* Section.swift */; };
 		DCC63C032AFF08D1005559C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C022AFF08D1005559C9 /* AppDelegate.swift */; };
 		DCC63C052AFF08D1005559C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C042AFF08D1005559C9 /* SceneDelegate.swift */; };
 		DCC63C072AFF08D1005559C9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C062AFF08D1005559C9 /* HomeViewController.swift */; };
@@ -25,6 +27,7 @@
 		DCC63C362AFF1084005559C9 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C352AFF1084005559C9 /* ExploreViewController.swift */; };
 		DCC63C382AFF14AE005559C9 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C372AFF14AE005559C9 /* NotificationsViewController.swift */; };
 		DCC63C3A2AFF14D7005559C9 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC63C392AFF14D7005559C9 /* LibraryViewController.swift */; };
+		DCCBD8052B19041700260D95 /* HandbooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCBD8042B19041700260D95 /* HandbooksCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,8 @@
 		DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
 		DC0F04A42AFF2D810086EF43 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DCA7AA5F2B17559D00AFAF68 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		DCBB1DC32B1BD5F800D65265 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
+		DCBB1DC52B1BD7F300D65265 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		DCC63BFF2AFF08D1005559C9 /* DesignViewCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignViewCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC63C022AFF08D1005559C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC63C042AFF08D1005559C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 		DCC63C352AFF1084005559C9 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		DCC63C372AFF14AE005559C9 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		DCC63C392AFF14D7005559C9 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		DCCBD8042B19041700260D95 /* HandbooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandbooksCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				DCA7AA5F2B17559D00AFAF68 /* Course.swift */,
+				DCBB1DC52B1BD7F300D65265 /* Section.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -144,6 +151,7 @@
 		DCC63C012AFF08D1005559C9 /* DesignViewCode */ = {
 			isa = PBXGroup;
 			children = (
+				DCCBD8032B1903FE00260D95 /* Cells */,
 				DCA7AA612B175DC700AFAF68 /* Models */,
 				DC0F04A32AFF2D780086EF43 /* Extensions */,
 				DC0F049A2AFF2C4F0086EF43 /* Helpers */,
@@ -182,8 +190,17 @@
 				DCC63C352AFF1084005559C9 /* ExploreViewController.swift */,
 				DCC63C372AFF14AE005559C9 /* NotificationsViewController.swift */,
 				DCC63C392AFF14D7005559C9 /* LibraryViewController.swift */,
+				DCBB1DC32B1BD5F800D65265 /* CoursesViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DCCBD8032B1903FE00260D95 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DCCBD8042B19041700260D95 /* HandbooksCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +337,7 @@
 				DCC63C072AFF08D1005559C9 /* HomeViewController.swift in Sources */,
 				DC0F04A02AFF2C6C0086EF43 /* CustomUIView.swift in Sources */,
 				DC0F049C2AFF2C5E0086EF43 /* CustomImageView.swift in Sources */,
+				DCCBD8052B19041700260D95 /* HandbooksCollectionViewCell.swift in Sources */,
 				DCC63C032AFF08D1005559C9 /* AppDelegate.swift in Sources */,
 				DC0F04A22AFF2C700086EF43 /* CustomBlurView.swift in Sources */,
 				DC0F04A52AFF2D810086EF43 /* Color.swift in Sources */,
@@ -328,7 +346,9 @@
 				DC0F049E2AFF2C670086EF43 /* Font.swift in Sources */,
 				DCC63C3A2AFF14D7005559C9 /* LibraryViewController.swift in Sources */,
 				DCC63C362AFF1084005559C9 /* ExploreViewController.swift in Sources */,
+				DCBB1DC62B1BD7F300D65265 /* Section.swift in Sources */,
 				DCC63C052AFF08D1005559C9 /* SceneDelegate.swift in Sources */,
+				DCBB1DC42B1BD5F800D65265 /* CoursesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
