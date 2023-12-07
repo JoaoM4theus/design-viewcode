@@ -12,6 +12,7 @@
 		DC0F04A02AFF2C6C0086EF43 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F049F2AFF2C6C0086EF43 /* CustomUIView.swift */; };
 		DC0F04A22AFF2C700086EF43 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */; };
 		DC0F04A52AFF2D810086EF43 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0F04A42AFF2D810086EF43 /* Color.swift */; };
+		DC6797A52B1FD5BE00716246 /* HandbooksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6797A42B1FD5BE00716246 /* HandbooksTableViewCell.swift */; };
 		DCA7AA602B17559D00AFAF68 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7AA5F2B17559D00AFAF68 /* Course.swift */; };
 		DCBB1DC42B1BD5F800D65265 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB1DC32B1BD5F800D65265 /* CoursesViewController.swift */; };
 		DCBB1DC62B1BD7F300D65265 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB1DC52B1BD7F300D65265 /* Section.swift */; };
@@ -53,6 +54,7 @@
 		DC0F049F2AFF2C6C0086EF43 /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
 		DC0F04A12AFF2C700086EF43 /* CustomBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
 		DC0F04A42AFF2D810086EF43 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		DC6797A42B1FD5BE00716246 /* HandbooksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandbooksTableViewCell.swift; sourceTree = "<group>"; };
 		DCA7AA5F2B17559D00AFAF68 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		DCBB1DC32B1BD5F800D65265 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		DCBB1DC52B1BD7F300D65265 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				DCCBD8042B19041700260D95 /* HandbooksCollectionViewCell.swift */,
+				DC6797A42B1FD5BE00716246 /* HandbooksTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				DC0F04A52AFF2D810086EF43 /* Color.swift in Sources */,
 				DCC63C342AFF0F88005559C9 /* MainTabBarController.swift in Sources */,
 				DCC63C382AFF14AE005559C9 /* NotificationsViewController.swift in Sources */,
+				DC6797A52B1FD5BE00716246 /* HandbooksTableViewCell.swift in Sources */,
 				DC0F049E2AFF2C670086EF43 /* Font.swift in Sources */,
 				DCC63C3A2AFF14D7005559C9 /* LibraryViewController.swift in Sources */,
 				DCC63C362AFF1084005559C9 /* ExploreViewController.swift in Sources */,
