@@ -26,9 +26,13 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDefaultTabBar()
         tabBar.tintColor = UIColor(named: "TabBarTint")
-        tabBar.isTranslucent = true
+        tabBar.layer.cornerRadius = 30
+        tabBar.layer.masksToBounds = true
+        tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        tabBar.selectionIndicatorImage = UIImage(named: "Selected")
+        additionalSafeAreaInsets.bottom = 15
+        configureDefaultTabBar()
     }
 
     private func configureDefaultTabBar(
@@ -42,9 +46,6 @@ class MainTabBarViewController: UITabBarController {
         var viewControllers: [UINavigationController] = []
         items.forEach { item in
             let navigationController = UINavigationController(rootViewController: item.values.viewController)
-            navigationController.navigationBar.prefersLargeTitles = true
-            navigationController.navigationBar.isTranslucent = true
-            navigationController.navigationBar.backgroundColor = .clear
             navigationController.title = item.values.title
             navigationController.tabBarItem.image = UIImage(systemName: item.values.icon)
             viewControllers.append(navigationController)

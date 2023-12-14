@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
         let element = UIScrollView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.contentInsetAdjustmentBehavior = .never
+        element.backgroundColor = UIColor(named: "PrimaryBackground")
         element.delegate = self
         return element
     }()
@@ -140,7 +141,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Featured"
-        view.backgroundColor = UIColor(named: "PrimaryBackground")
+        view.backgroundColor = .clear
         configureAdditional()
     }
 
@@ -185,7 +186,7 @@ class HomeViewController: UIViewController {
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         NSLayoutConstraint.activate([
             backgroundImage.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -250,7 +251,7 @@ class HomeViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: viewAux.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: viewAux.trailingAnchor, constant: -16),
             tableViewHeight,
-            tableView.bottomAnchor.constraint(equalTo: viewAux.bottomAnchor, constant: -40)
+            tableView.bottomAnchor.constraint(equalTo: viewAux.bottomAnchor, constant: -100)
         ])
     }
 
