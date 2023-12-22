@@ -27,26 +27,27 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
     }()
 
     private lazy var visualEffect: CustomBlurView = {
-        let blurEffect = UIBlurEffect(style: .systemThinMaterial)
+        let blurEffect = UIBlurEffect(style: .systemMaterial)
         let element = CustomBlurView(effect: blurEffect)
         element.translatesAutoresizingMaskIntoConstraints = false
         element.cornerRadius = 30
         return element
     }()
 
-    private lazy var contentVisualEffect: CustomBlurView = {
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-        let element = CustomBlurView(effect: blurEffect)
+    private lazy var contentVisualEffect: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemThinMaterial)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect, style: .label)
+        let element = UIVisualEffectView(effect: vibrancyEffect)
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.cornerRadius = 30
         return element
     }()
 
     private lazy var viewOpacity: CustomView = {
         let element = CustomView()
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.layer.opacity = 5/100
-        element.cornerRadius = 30
+        element.layer.opacity = 0.05
+        element.cornerRadius = 15
+        element.backgroundColor = .black
         return element
     }()
     
@@ -70,7 +71,9 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.text = "Learn about all the basics of SwiftUI"
-        element.font = .systemFont(ofSize: 12, weight: .regular)
+        element.adjustsFontForContentSizeCategory = true
+        element.maximumContentSizeCategory = .accessibilityExtraLarge
+        element.font = UIFont.preferredFont(for: .title1, weight: .bold)
         element.numberOfLines = 2
         return element
     }()
@@ -79,7 +82,9 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.text = "20 HOURS - 30 SECTIONS"
-        element.font = .systemFont(ofSize: 12, weight: .regular)
+        element.adjustsFontForContentSizeCategory = true
+        element.maximumContentSizeCategory = .accessibilityExtraLarge
+        element.font = UIFont.preferredFont(for: .title1, weight: .bold)
         element.numberOfLines = 0
         return element
     }()
@@ -88,7 +93,9 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.text = "SwiftUI Handbook"
-        element.font = .systemFont(ofSize: 17, weight: .semibold)
+        element.adjustsFontForContentSizeCategory = true
+        element.maximumContentSizeCategory = .accessibilityExtraLarge
+        element.font = UIFont.preferredFont(for: .title1, weight: .bold)
         element.numberOfLines = 0
         return element
     }()
@@ -150,7 +157,7 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(mainView)
         mainView.addSubview(viewBackground)
         mainView.addSubview(visualEffect)
-        visualEffect.contentView.addSubview(contentVisualEffect)
+        mainView.addSubview(contentVisualEffect)
         visualEffect.contentView.addSubview(viewOpacity)
         visualEffect.contentView.addSubview(progressView)
         visualEffect.contentView.addSubview(imageHandbook)
@@ -159,7 +166,7 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
         contentVisualEffect.contentView.addSubview(handbookDescription)
         contentVisualEffect.contentView.addSubview(subtitle)
         contentVisualEffect.contentView.addSubview(title)
-        
+
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: contentView.topAnchor),
             mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -179,15 +186,15 @@ class HandbooksCollectionViewCell: UICollectionViewCell {
             visualEffect.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
         ])
         NSLayoutConstraint.activate([
-            viewOpacity.topAnchor.constraint(equalTo: visualEffect.topAnchor, constant: 16),
-            viewOpacity.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 16),
-            viewOpacity.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -16),
+            viewOpacity.topAnchor.constraint(equalTo: visualEffect.topAnchor, constant: 10),
+            viewOpacity.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 10),
+            viewOpacity.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -10),
             viewOpacity.heightAnchor.constraint(equalToConstant: 90)
         ])
         NSLayoutConstraint.activate([
             imageHandbook.topAnchor.constraint(equalTo: viewOpacity.topAnchor),
-            imageHandbook.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor),
-            imageHandbook.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor),
+            imageHandbook.leadingAnchor.constraint(equalTo: viewOpacity.leadingAnchor),
+            imageHandbook.trailingAnchor.constraint(equalTo: viewOpacity.trailingAnchor),
             imageHandbook.bottomAnchor.constraint(equalTo: viewOpacity.bottomAnchor),
         ])
         NSLayoutConstraint.activate([

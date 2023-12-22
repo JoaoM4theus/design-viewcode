@@ -22,4 +22,8 @@ extension UIColor {
 
         return UIColor(red: red, green: green, blue: blue, alpha: CGFloat(opacity))
     }
+    
+    class var colorShadow: UIColor {
+        UIColor(named: "Shadow")!
+    }
 }

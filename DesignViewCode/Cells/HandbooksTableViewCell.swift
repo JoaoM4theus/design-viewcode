@@ -22,6 +22,7 @@ class HandbooksTableViewCell: UITableViewCell {
 
     private lazy var descriptionLabel: UILabel = {
         let element = UILabel()
+        element.adjustsFontSizeToFitWidth = true
         element.translatesAutoresizingMaskIntoConstraints = false
         element.textColor = .white
         element.text = "Description"
@@ -32,6 +33,7 @@ class HandbooksTableViewCell: UITableViewCell {
     
     private lazy var durationLabel: UILabel = {
         let element = UILabel()
+        element.adjustsFontSizeToFitWidth = true
         element.translatesAutoresizingMaskIntoConstraints = false
         element.textColor = .white
         element.text = "Duration"
@@ -42,6 +44,7 @@ class HandbooksTableViewCell: UITableViewCell {
     
     private lazy var titleLabel: UILabel = {
         let element = UILabel()
+        element.adjustsFontSizeToFitWidth = true
         element.translatesAutoresizingMaskIntoConstraints = false
         element.textColor = .white
         element.text = "Title"
