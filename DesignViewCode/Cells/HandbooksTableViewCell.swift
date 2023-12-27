@@ -1,6 +1,6 @@
 import UIKit
 
-class HandbooksTableViewCell: UITableViewCell {
+final class HandbooksTableViewCell: UITableViewCell {
     static let identifier = "HandbooksTableViewCell"
     
     private lazy var imageBackground: UIImageView = {
@@ -69,11 +69,6 @@ class HandbooksTableViewCell: UITableViewCell {
         return element
     }()
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
         super.layoutIfNeeded()
@@ -84,6 +79,7 @@ class HandbooksTableViewCell: UITableViewCell {
         layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowRadius = 5
         layer.cornerRadius = 30
+        clipsToBounds = true
         setUpConstraints()
     }
 

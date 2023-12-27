@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SectionCollectionViewCell: UICollectionViewCell {
+final class SectionCollectionViewCell: UICollectionViewCell {
     static let identifier = "SectionCollectionViewCell"
 
     private lazy var backgroundVisualEffect: CustomBlurView = {

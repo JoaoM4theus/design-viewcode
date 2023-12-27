@@ -17,3 +17,9 @@ let topics = [
     Topic(topicName: "UI Design", topicSymbol: "eyedropper"),
     Topic(topicName: "Web Development", topicSymbol: "desktopcomputer")
 ]
+
+let librarySettings = [
+    Topic(topicName: "History", topicSymbol: "clock.fill"),
+    Topic(topicName: "Favorites", topicSymbol: "star.fill"),
+    Topic(topicName: "Downloads", topicSymbol: "square.and.arrow.down.fill")
+]

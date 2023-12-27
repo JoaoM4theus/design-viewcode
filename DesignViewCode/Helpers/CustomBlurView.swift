@@ -8,7 +8,7 @@
 import UIKit
 
 @IBDesignable
-class CustomBlurView: UIVisualEffectView {
+final class CustomBlurView: UIVisualEffectView {
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
             layer.cornerRadius = cornerRadius

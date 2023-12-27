@@ -22,11 +22,12 @@ enum ItemsTabBarController {
     }
 }
 
-class MainTabBarViewController: UITabBarController {
+final class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = UIColor(named: "TabBarTint")
+        tabBar.backgroundColor = UIColor(named: "PrimaryBackground")
         tabBar.layer.cornerRadius = 30
         tabBar.layer.masksToBounds = true
         tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     private var tableViewHeight = NSLayoutConstraint()
     private lazy var viewAux: UIView = {

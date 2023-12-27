@@ -42,7 +42,7 @@ let handbooks = [
     Course(
         title: "SwiftUI Handbook",
         subtitle: "80 sections - 9 hours",
-        description: "Build an iOS app for iOS 15 with custom layouts, animations and more.",
+        description: "Build an iOS app for iOS 15 with custom layouts, animations and more.".localized,
         icon: UIImage(named: "Logo SwiftUI"),
         banner: UIImage(named: "Illustration 2"),
         author: ["Meng To"],
@@ -54,8 +54,8 @@ let handbooks = [
     ),
     Course(
         title: "React Hooks Handbook",
-        subtitle: "30 sections - 3 hours",
-        description: "A comprehensive series of tutorials on React Hooks and more!",
+        subtitle: "30 sections - 3 hours".localized,
+        description: "A comprehensive series of tutorials on React Hooks and more!".localized,
         icon: UIImage(named: "Logo React"),
         banner: UIImage(named: "Illustration 4"),
         author: ["Meng To", "Stephanie Diep"],
@@ -72,7 +72,7 @@ let courses = [
     Course(
         title: "SwiftUI Handbook",
         subtitle: "80 sections - 9 hours",
-        description: "Build an iOS app for iOS 15 with custom layouts, animations and more.",
+        description: "Build an iOS app for iOS 15 with custom layouts, animations and more.".localized,
         icon: UIImage(named: "Logo SwiftUI"),
         banner: UIImage(named: "Illustration 4"),
         author: ["Meng To"],
@@ -86,7 +86,7 @@ let courses = [
     Course(
         title: "Flutter For Designer",
         subtitle: "20 sections - 3 hours",
-        description: "A comprehensive series of tutorials on React Hooks and more!",
+        description: "A comprehensive series of tutorials on React Hooks and more!".localized,
         icon: UIImage(named: "Logo Flutter"),
         banner: UIImage(named: "Illustration 1"),
         author: ["Stephanie Diep"],

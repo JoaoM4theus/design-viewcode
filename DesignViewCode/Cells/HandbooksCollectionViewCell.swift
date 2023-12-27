@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HandbooksCollectionViewCell: UICollectionViewCell {
+final class HandbooksCollectionViewCell: UICollectionViewCell {
     static let identifier = "HandbooksCollectionViewCell"
     
     private lazy var mainView: CustomView = {
